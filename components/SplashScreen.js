@@ -1,100 +1,159 @@
+// import * as React from "react";
+// import {
+//   ActivityIndicator,
+//   Text,
+//   View,
+//   StyleSheet,
+//   SafeAreaView,
+//   Image,
+//   AsyncStorage,
+// } from "react-native";
+// // import AsyncStorage from "react-native-community/async-storage";
+// //
+// export default function SplashScreen() {
+//   //State for ActivityIndicator animation
+//   const [animating, setAnimating] = React.useState(true);
+
+//   // React.useEffect(() => {
+//   //   setTimeout(() => {
+//   //     setAnimating(false);
+//   //     //Check if user_id is set or not
+//   //     //If not then send for Authentication
+//   //     //else send to Home Screen
+
+//   //     // navigation.push("Auth");
+//   //   }, 2000);
+//   // }, []);
+
+//   return (
+//     <View style={styles.container}>
+//       <Image
+//         style={styles.topImage}
+//         source={require("../assets/splashscreenimage.svg")}
+//       />
+//       <Image
+//         style={styles.bottomImage}
+//         source={require("../assets/bluebg.svg")}
+//       />
+//       <Image
+//         style={styles.button}
+//         source={require("../assets/buttonSplashScreen.svg")}
+//       />
+//       <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
+
+//       <ActivityIndicator
+//         animating={animating}
+//         color="#FFFFFF"
+//         size="large"
+//         style={styles.activityIndicator}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     alignItems: "center",
+//     flex: 1,
+//     backgroundColor: "white",
+//   },
+//   topImage: {
+//     marginTop: 20,
+//     width: "80vw",
+//     height: "58vw",
+//   },
+//   bottomImage: {
+//     // position: "fixed",
+//     // bottom: 0,
+//     // height: "160vw",
+//     // width: "100vw",
+//   },
+
+//   button: {
+//     position: "absolute",
+//     bottom: -300,
+//   },
+
+//   text: {
+//     fontFamily: "arial",
+//     position: "absolute",
+//     bottom: -145,
+//     fontSize: 20,
+//     fontWeight: "600",
+//     color: "white",
+//   },
+
+//   activityIndicator: {
+//     alignItems: "center",
+//     height: 80,
+//   },
+// });
+
 import * as React from "react";
 import {
-  ActivityIndicator,
   Text,
   View,
   StyleSheet,
   SafeAreaView,
   Image,
-  AsyncStorage,
+  Pressable,
 } from "react-native";
-// import AsyncStorage from "react-native-community/async-storage";
 
 export default function SplashScreen({ navigation }) {
-  //State for ActivityIndicator animation
-  const [animating, setAnimating] = React.useState(true);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setAnimating(false);
-      //Check if user_id is set or not
-      //If not then send for Authentication
-      //else send to Home Screen
-
-      navigation.push("Auth");
-    }, 2000);
-  }, []);
-
   return (
     <View style={styles.container}>
       <Image
         style={styles.topImage}
-        source={require("../assets/splashscreenimage.svg")}
+        source={require("../assets/splashScreenImage.png")}
       />
       <Image
         style={styles.bottomImage}
-        source={require("../assets/bluebg.svg")}
+        source={require("../assets/bluebg.png")}
       />
-      <Image
-        style={styles.button}
-        source={require("../assets/buttonSplashScreen.svg")}
-      />
-      <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
 
-      <ActivityIndicator
-        animating={animating}
-        color="#FFFFFF"
-        size="large"
-        style={styles.activityIndicator}
-      />
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          navigation.push("Auth");
+        }}
+      >
+        <Image source={require("../assets/buttonSplashScreen.png")} />
+      </Pressable>
+      <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
     alignItems: "center",
     flex: 1,
     backgroundColor: "white",
   },
   topImage: {
-    marginTop: 20,
-    width: "80vw",
-    height: "58vw",
-    zIndex: 0, // works on ios
+    marginTop: 100,
+    width: 400,
+    height: 200,
+    resizeMode: "contain",
+    zIndex: 100,
   },
   bottomImage: {
-    position: "fixed",
-    bottom: 0,
-    height: "160vw",
-    width: "100vw",
-    zindex: "1",
-    zIndex: 0, // works on ios
+    position: "absolute",
+    bottom: -150,
   },
 
   button: {
     position: "absolute",
-    bottom: -300,
+    bottom: 50,
     zIndex: 100, // works on ios
-    boxShadow: "5px 5px 10px rgba(0,0,0,0.3)",
-    MozBorderRadius: "190px",
-    WebkitBorderRadius: "190px",
   },
 
   text: {
-    fontFamily: "arial",
     position: "absolute",
-    bottom: -145,
+    bottom: 200,
     fontSize: 20,
-    fontWeight: "600",
-    color: "white",
-    zIndex: 100, // works on ios
-    elevation: 100, // works on android
-  },
+    fontWeight: "700",
 
-  activityIndicator: {
-    alignItems: "center",
-    height: 80,
+    color: "white",
   },
 });

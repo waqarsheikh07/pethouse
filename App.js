@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./components/TabNavigation";
-
+import { StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "./components/Home";
@@ -45,32 +45,31 @@ const Auth = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
-        {/* SplashScreen which will come once for 5 Seconds */}
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          // Hiding header for Splash Screen
-          options={{ headerShown: false }}
-        />
-        {/* Auth Navigator: Include Login and Signup */}
-        <Stack.Screen
-          name="Auth"
-          component={Auth}
-          options={{ headerShown: false }}
-        />
-        {/* Navigation Drawer as a landing page */}
-        <Stack.Screen
-          name="Dashboard"
-          component={Tabs}
-          // Hiding header for Navigation Drawer
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-
-    // <SplashScreen />
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="SplashScreen">
+    //     {/* SplashScreen which will come once for 5 Seconds */}
+    //     <Stack.Screen
+    //       name="SplashScreen"
+    //       component={SplashScreen}
+    //       // Hiding header for Splash Screen
+    //       options={{ headerShown: false }}
+    //     />
+    //     {/* Auth Navigator: Include Login and Signup */}
+    //     <Stack.Screen
+    //       name="Auth"
+    //       component={Auth}
+    //       options={{ headerShown: false }}
+    //     />
+    //     {/* Navigation Drawer as a landing page */}
+    //     <Stack.Screen
+    //       name="Dashboard"
+    //       component={Tabs}
+    //       // Hiding header for Navigation Drawer
+    //       options={{ headerShown: false }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <Dashboard />
   );
 };
 

@@ -77,7 +77,7 @@ function RenderListItem({ item }) {
               color: "white",
               fontSize: 16,
               padding: 20,
-              fontWeight: 600,
+              fontWeight: "600",
             }}
           >
             ${item.price}
@@ -94,7 +94,7 @@ function RenderListItem({ item }) {
         ))}
 
         <View style={{ padding: 8, justifyContent: "center" }}>
-          <Text style={{ fontFamily: "Arial", fontWeight: 700, fontSize: 15 }}>
+          <Text style={{ fontWeight: "700", fontSize: 15 }}>
             {item.name} {console.log(item.thumb)}
           </Text>
           <Text style={{ paddingTop: 5 }}>{item.pieces} Pieces</Text>
@@ -163,7 +163,6 @@ function RenderSmallListItem({ item }) {
       >
         <Text
           style={{
-            fontFamily: "Arial",
             fontWeight: 700,
             color: "white",
             fontSize: 15,
@@ -180,7 +179,7 @@ function RenderSmallListItem({ item }) {
 function DashboardHeading({ heading, buttonText }) {
   return (
     <View style={{ flexDirection: "row", padding: 10 }}>
-      <Text style={{ fontFamily: "Arial", fontWeight: 600 }}>{heading}</Text>
+      <Text style={{ fontWeight: "600" }}>{heading}</Text>
       <Text style={{ position: "absolute", right: 10 }}>{buttonText}</Text>
     </View>
   );
@@ -206,7 +205,7 @@ export default function App() {
 
   const getPets = async () => {
     try {
-      const response = await fetch("http://localhost:1337/popular-pets");
+      const response = await fetch("10.0.2.2:1337/popular-pets");
       const json = await response.json();
       setPets(json);
     } catch (error) {
@@ -221,8 +220,8 @@ export default function App() {
   }, []);
 
   return (
-    <ScrollView>
-      <SafeAreaView>
+    <SafeAreaView>
+      <ScrollView>
         <View style={styles.container}>
           <TopSearchBar />
           <View style={{ paddingBottom: 20 }}>
@@ -240,14 +239,14 @@ export default function App() {
               <FlatList
                 data={pets}
                 renderItem={({ item }) => <RenderListItem item={item} />}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item) => item.id}
                 style={{ padding: 5 }}
               />
             )}
           </View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

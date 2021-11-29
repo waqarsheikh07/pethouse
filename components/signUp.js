@@ -14,6 +14,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../components/Login";
 
 import axios from "axios";
+import { styles as FormStyles } from "../MyStyles/FormStyles";
 
 export default function Signup({ navigation }) {
   const [name, setName] = React.useState("");
@@ -39,6 +40,7 @@ export default function Signup({ navigation }) {
         console.log("Well done!");
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
+        navigation.navigate("LoginScreen");
       })
       .catch((error) => {
         // Handle error.
@@ -125,8 +127,9 @@ export default function Signup({ navigation }) {
         <Button
           mode="contained"
           color="#0092F9"
-          // onPress={async () => Register(name, email, password)}
-          onPress={() => navigation.navigate("LoginScreen")}
+          onPress={async () => {
+            Register(name, email, password);
+          }}
           style={styles.buttons}
           labelStyle={{ paddingTop: 3 }}
         >
@@ -166,42 +169,8 @@ export default function Signup({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "white",
-  },
-  header: {
-    paddingTop: 20,
-  },
-  petText: {
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  houseText: {
-    color: "#0092F9",
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  input: {
-    backgroundColor: "white",
-    width: "80vw",
-  },
-  buttons: {
-    marginTop: 5,
-    height: 40,
-    width: "80vw",
-  },
-  buttonsContainer: {
-    paddingTop: 20,
-  },
-  footer: {
-    paddingTop: 40,
-    flex: 2,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-  },
+  ...FormStyles,
+
   haveAccount: {
     textAlign: "center",
     marginTop: 15,
