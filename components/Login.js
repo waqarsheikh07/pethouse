@@ -13,7 +13,8 @@ import { TextInput, Card, Button, Switch } from "react-native-paper";
 
 import axios from "axios";
 import { styles as FormStyles } from "../MyStyles/FormStyles";
-export default function Login() {
+
+export default function Login({ navigation }) {
   const [email, setEmail] = React.useState("");
   const [password, setPasswrod] = React.useState("");
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
@@ -41,12 +42,13 @@ export default function Login() {
         console.log("Well done!");
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
-        // navigation.replace("Dashboard");
+        navigation.replace("Dashboard");
         setLoading(false);
       })
       .catch((error) => {
         // Handle error.
         console.log("An error occurred:", error.response);
+        setLoading(false);
       });
   };
 
@@ -114,7 +116,9 @@ export default function Login() {
             <Button
               mode="contained"
               color="#0092F9"
-              onPress={() => console.log("Pressed")}
+              onPress={() => {
+                Login(email, password);
+              }}
               style={styles.buttons}
               labelStyle={{
                 paddingTop: 5,
@@ -126,7 +130,7 @@ export default function Login() {
             <Button
               mode="outlined"
               color="#0092F9"
-              onPress={() => console.log("Pressed")}
+              onPress={() => navigation.navigate("RegisterScreen")}
               style={styles.buttons}
               labelStyle={{
                 color: "#0092F9",

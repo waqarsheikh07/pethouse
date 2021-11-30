@@ -96,7 +96,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 
 export default function SplashScreen({ navigation }) {
@@ -111,14 +111,17 @@ export default function SplashScreen({ navigation }) {
         source={require("../assets/bluebg.png")}
       />
 
-      <Pressable
+      <TouchableOpacity
         style={styles.button}
         onPress={() => {
           navigation.push("Auth");
         }}
       >
-        <Image source={require("../assets/buttonSplashScreen.png")} />
-      </Pressable>
+        <Image
+          style={{ height: 150, width: 150 }}
+          source={require("../assets/buttonSplashScreen.png")}
+        />
+      </TouchableOpacity>
       <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
     </View>
   );
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   topImage: {
-    marginTop: 100,
+    marginTop: 70,
     width: 400,
     height: 200,
     resizeMode: "contain",
@@ -139,18 +142,20 @@ const styles = StyleSheet.create({
   },
   bottomImage: {
     position: "absolute",
-    bottom: -150,
+    bottom: -50,
+    height: 500,
+    width: 400,
   },
 
   button: {
     position: "absolute",
-    bottom: 50,
+    bottom: 30,
     zIndex: 100, // works on ios
   },
 
   text: {
     position: "absolute",
-    bottom: 200,
+    bottom: 220,
     fontSize: 20,
     fontWeight: "700",
 

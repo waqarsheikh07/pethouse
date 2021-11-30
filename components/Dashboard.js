@@ -205,7 +205,7 @@ export default function App() {
 
   const getPets = async () => {
     try {
-      const response = await fetch("10.0.2.2:1337/popular-pets");
+      const response = await fetch("http://localhost:1337/popular-pets");
       const json = await response.json();
       setPets(json);
     } catch (error) {

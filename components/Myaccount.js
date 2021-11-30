@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Text,
   View,
@@ -8,19 +8,20 @@ import {
   FlatList,
   Image,
   Pressable,
-  ScrollView
-} from 'react-native';
-import Constants from 'expo-constants';
+  ScrollView,
+} from "react-native";
+import Constants from "expo-constants";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const getprofileData = () => [
-  { name: 'Profile', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Notification', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'My Order', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Payment', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Address', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Favourite', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Language', icon: '../assets/catsdogs/cat1.jpg' },
-  { name: 'Setting', icon: '../assets/catsdogs/cat1.jpg' },
+  { name: "Profile", icon: "account" },
+  { name: "Notification", icon: "bell" },
+  { name: "My Order", icon: "cart" },
+  { name: "Payment", icon: "bank" },
+  { name: "Address", icon: "home" },
+  { name: "Favourite", icon: "heart" },
+  { name: "Language", icon: "translate" },
+  { name: "Setting", icon: "cog" },
 ];
 
 function Renderlist({ item }) {
@@ -28,30 +29,20 @@ function Renderlist({ item }) {
     <Pressable>
       <View
         style={{
-          flexDirection: 'row',
+          flexDirection: "row",
           paddingBottom: 10,
           paddingLeft: 10,
-        }}>
+        }}
+      >
         <View
           style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'left',
-            alignItems: 'Center',
-          }}>
-          <Image
-            style={{ height: 40, width: 40 }}
-            source={require('../assets/Myaccount/Frame47.png')}
-          />
-          <Text style={{ fontFamily: 'arial', fontSize: 17, paddingLeft: 15 }}>
-            {item.name}
-          </Text>
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'Left' }}>
-          <Image
-            style={{ height: 12, width: 12, left: 120, alignItems: 'Center' }}
-            source={require('../assets/Myaccount/arrow.svg')}
-          />
+            flexDirection: "row",
+            justifyContent: "left",
+            alignItems: "Center",
+          }}
+        >
+          <MaterialCommunityIcons name={item.icon} size={34} color={"black"} />
+          <Text style={{ fontSize: 17, paddingLeft: 15 }}>{item.name}</Text>
         </View>
       </View>
     </Pressable>
@@ -61,64 +52,46 @@ function Renderlist({ item }) {
 export default function Myaccount() {
   const myData = getprofileData();
   return (
-     <ScrollView>
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={{
-          flexDirection: 'column',
-          position: 'absolute',
-          top: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius:1
-        }}>
-        <View>
-          {' '}
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 20,
-              fontFamily: 'arial',
-              paddingBottom: 10,
-            }}>
-            My Account
-          </Text>
-        </View>
-        <View>
-          {' '}
-          <Image
-            style={{ height: 70, width: 70 }}
-            source={require('../assets/Myaccount/Profileimage.png')}
-          />
-        </View>
-        <View>
-          {' '}
-          <Text style={{ color: 'white', fontSize: 15, fontFamily: 'arial' }}>
-            {' '}
-            Hammad Shahzad
-          </Text>
-        </View>
-        <View>
-          {' '}
-          <Text style={{ color: 'white', fontSize: 15, fontFamily: 'arial' }}>
-            {' '}
-            hammadbiz@gmail.com{' '}
-          </Text>
-        </View>
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 1,
+        }}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+            marginTop: 40,
+            paddingBottom: 10,
+          }}
+        >
+          My Account
+        </Text>
+
+        <Image
+          style={{ height: 70, width: 70, marginBottom: 20 }}
+          source={require("../assets/Myaccount/Profileimage.png")}
+        />
+
+        <Text style={{ color: "white", fontSize: 15 }}>Hammad Shahzad</Text>
+
+        <Text style={{ color: "white", fontSize: 15 }}>
+          hammadbiz@gmail.com
+        </Text>
       </View>
       <ImageBackground
         style={styles.bottomimage}
-        source={require('../assets/Myaccount/bottom.svg')}>
+        source={require("../assets/Myaccount/bottom.png")}
+      >
         <View
           style={{
-            position: 'absolute',
-            top: 230,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            justifyContent: 'center',
-            alignItems: 'left',
-          }}>
+            marginTop: 150,
+            paddingLeft: 20,
+          }}
+        >
           <FlatList
             data={myData}
             renderItem={({ item }) => <Renderlist item={item} />}
@@ -127,22 +100,21 @@ export default function Myaccount() {
           />
         </View>
       </ImageBackground>
-    </View>
-     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#0092F9',
+    justifyContent: "center",
+    backgroundColor: "#0092F9",
   },
 
   bottomimage: {
-    marginTop:20,
-    height: '200vw',
-    width: '100%',
+    height: 700,
+    position: "relative",
+    width: "100%",
   },
 });
