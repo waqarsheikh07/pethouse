@@ -8,17 +8,19 @@ import {
   Span,
   ActivityIndicator,
   Alert,
+  Pressable,
 } from "react-native";
 import { TextInput, Card, Button, Switch } from "react-native-paper";
 
 import axios from "axios";
 import { styles as FormStyles } from "../MyStyles/FormStyles";
 
-export default function Login({ navigation }) {
+export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPasswrod] = React.useState("");
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [errorMsg, setError] = React.useState("");
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
@@ -45,10 +47,12 @@ export default function Login({ navigation }) {
         navigation.replace("Dashboard");
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((err) => {
         // Handle error.
-        console.log("An error occurred:", error.response);
+        console.log("An error occurred:" + err);
+        72;
         setLoading(false);
+        setError("" + err);
       });
   };
 
@@ -58,18 +62,18 @@ export default function Login({ navigation }) {
         <ActivityIndicator />
       ) : (
         <View style={styles.container}>
-          <View style={styles.header}>
+          {/* <View style={styles.header}>
             <Image
               style={{ width: 100, height: 85, resizeMode: "contain" }}
               source={require("../assets/Login/home.png")}
             />
-          </View>
+          </View> */}
 
-          <View style={styles.textView}>
+          {/* <View style={styles.textView}>
             <Text style={styles.petText}>Pet</Text>
             <Text style={styles.houseText}> House</Text>
-          </View>
-
+          </View> */}
+          {/* 
           <View style={{ marginTop: 30 }}>
             <TextInput
               theme={{
@@ -78,7 +82,10 @@ export default function Login({ navigation }) {
               style={styles.input}
               label="Email"
               value={email}
-              onChangeText={(text) => setEmail(text)}
+              onChangeText={(text) => {
+                setEmail(text);
+                setError("");
+              }}
               mode="outlined"
               keyboardType="email-address"
               activeOutlineColor="#F2F2F2"
@@ -93,7 +100,11 @@ export default function Login({ navigation }) {
               style={styles.input}
               label="Password"
               secureTextEntry
-              onChangeText={(pas) => setPasswrod(pas)}
+              onChangeText={(text) => {
+                setPasswrod(text);
+                setError("");
+              }}
+              value={password}
               mode="outlined"
               activeOutlineColor="#F2F2F2"
               outlineColor="#F2F2F2"
@@ -108,16 +119,30 @@ export default function Login({ navigation }) {
                 onValueChange={onToggleSwitch}
               />
               <Text style={styles.rememberMe}>Remember Me</Text>
-              <Text style={styles.forgotPass}>Forgot Password?</Text>
-            </View>
-          </View>
 
-          <View style={styles.buttonsContainer}>
+              <Text
+                onPress={() => console.log("")}
+                // () => navigation.navigate("Forget")
+                style={styles.forgotPass}
+              >
+                Forgot Password?
+              </Text>
+            </View>
+          </View> */}
+
+          {/* <View style={{ marginRight: "auto", paddingTop: 10 }}>
+            <Text style={{ color: "red", fontSize: 14, fontWeight: 500 }}>
+              {errorMsg}
+            </Text>
+          </View> */}
+
+          {/* <View style={styles.buttonsContainer}>
             <Button
               mode="contained"
               color="#0092F9"
               onPress={() => {
-                Login(email, password);
+                // Login(email, password);
+                console.log("");
               }}
               style={styles.buttons}
               labelStyle={{
@@ -130,7 +155,8 @@ export default function Login({ navigation }) {
             <Button
               mode="outlined"
               color="#0092F9"
-              onPress={() => navigation.navigate("RegisterScreen")}
+              onPress={() => console.log("")}
+              // navigation.navigate("RegisterScreen")
               style={styles.buttons}
               labelStyle={{
                 color: "#0092F9",
@@ -139,9 +165,9 @@ export default function Login({ navigation }) {
             >
               Create an account
             </Button>
-          </View>
+          </View> */}
 
-          <View style={styles.footer}>
+          {/* <View style={styles.footer}>
             <View style={{ borderWidth: 0 }}>
               <Button
                 icon="facebook"
@@ -156,7 +182,7 @@ export default function Login({ navigation }) {
               icon="twitter"
               labelStyle={{ color: "blue", fontSize: 26 }}
             />
-          </View>
+          </View> */}
         </View>
       )}
     </View>

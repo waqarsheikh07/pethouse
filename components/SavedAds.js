@@ -203,23 +203,21 @@ export default function App({ data }) {
   const smallList = getData();
 
   return (
-    <SafeAreaView>
+    <ScrollView style={{ marginBottom: 50 }}>
       <TopSearchBar />
-      <ScrollView style={{ marginBottom: 50 }}>
-        <View style={styles.container}>
-          <View style={{ paddingBottom: 20 }}>
-            <View style={{ padding: 10 }}>
-              <Image
-                style={styles.bottomImage}
-                source={require("../assets/banner.png")}
-              />
-            </View>
-
-            <MyFlatList data={myData} numColumns={2} />
+      <View style={styles.container}>
+        <View style={{ paddingBottom: 20 }}>
+          <View style={{ padding: 10 }}>
+            <Image
+              style={styles.bottomImage}
+              source={require("../assets/banner.png")}
+            />
           </View>
+
+          <MyFlatList data={myData} numColumns={2} />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 }
 

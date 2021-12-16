@@ -14,6 +14,7 @@ import Login from "./components/Login";
 import SignUp from "./components/signUp";
 import HomScreen from "./components/HomeScreen";
 import SavedAds from "./components/SavedAds";
+import Forget from "./components/Forget";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,11 @@ const Auth = () => {
       <Stack.Screen
         name="LoginScreen"
         component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Forget"
+        component={Forget}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -46,30 +52,32 @@ const Auth = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
-        {/* SplashScreen which will come once for 5 Seconds */}
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          // Hiding header for Splash Screen
-          options={{ headerShown: false }}
-        />
-        {/* Auth Navigator: Include Login and Signup */}
-        <Stack.Screen
-          name="Auth"
-          component={Auth}
-          options={{ headerShown: false }}
-        />
-        {/* Navigation Drawer as a landing page */}
-        <Stack.Screen
-          name="Dashboard"
-          component={Tabs}
-          // Hiding header for Navigation Drawer
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator initialRouteName="SplashScreen">
+    //     {/* SplashScreen which will come once for 5 Seconds */}
+    //     <Stack.Screen
+    //       name="SplashScreen"
+    //       component={SplashScreen}
+    //       // Hiding header for Splash Screen
+    //       options={{ headerShown: false }}
+    //     />
+    //     {/* Auth Navigator: Include Login and Signup */}
+    //     <Stack.Screen
+    //       name="Auth"
+    //       component={Auth}
+    //       options={{ headerShown: false }}
+    //     />
+    //     {/* Navigation Drawer as a landing page */}
+    //     <Stack.Screen
+    //       name="Dashboard"
+    //       component={Tabs}
+    //       // Hiding header for Navigation Drawer
+    //       options={{ headerShown: false }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
+    <Login />
   );
 };
 

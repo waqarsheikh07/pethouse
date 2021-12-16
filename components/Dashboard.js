@@ -220,33 +220,31 @@ export default function App() {
   }, []);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.container}>
-          <TopSearchBar />
-          <View style={{ paddingBottom: 20 }}>
-            <DashboardHeading heading="Popular Pets" buttonText="See All" />
-            {isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <MyFlatList data={pets.slice(0, 2)} numColumns={2} />
-            )}
+    <ScrollView>
+      <View style={styles.container}>
+        <TopSearchBar />
+        <View style={{ paddingBottom: 20 }}>
+          <DashboardHeading heading="Popular Pets" buttonText="See All" />
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <MyFlatList data={pets.slice(0, 2)} numColumns={2} />
+          )}
 
-            <DashboardHeading heading="Best Price" buttonText="See All" />
-            {isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <FlatList
-                data={pets}
-                renderItem={({ item }) => <RenderListItem item={item} />}
-                keyExtractor={(item) => item.id}
-                style={{ padding: 5 }}
-              />
-            )}
-          </View>
+          <DashboardHeading heading="Best Price" buttonText="See All" />
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <FlatList
+              data={pets}
+              renderItem={({ item }) => <RenderListItem item={item} />}
+              keyExtractor={(item) => item.id}
+              style={{ padding: 5 }}
+            />
+          )}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 }
 

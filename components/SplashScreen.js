@@ -1,3 +1,77 @@
+import * as React from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+
+export default function SplashScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Image
+        style={styles.topImage}
+        source={require("../assets/splashScreenImage.png")}
+      />
+      <Image
+        style={styles.bottomImage}
+        source={require("../assets/bluebg.png")}
+      />
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.push("Auth");
+        }}
+      >
+        <Image
+          style={{ height: 150, width: 150 }}
+          source={require("../assets/buttonSplashScreen.png")}
+        />
+      </TouchableOpacity>
+      <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    flex: 1,
+    backgroundColor: "white",
+  },
+  topImage: {
+    marginTop: 70,
+    width: 400,
+    height: 200,
+    resizeMode: "contain",
+    zIndex: 100,
+  },
+  bottomImage: {
+    position: "absolute",
+    bottom: -50,
+    height: 500,
+    width: 400,
+  },
+
+  button: {
+    position: "absolute",
+    bottom: 30,
+    zIndex: 100, // works on ios
+  },
+
+  text: {
+    position: "absolute",
+    bottom: 220,
+    fontSize: 20,
+    fontWeight: "700",
+
+    color: "white",
+  },
+});
+
 // import * as React from "react";
 // import {
 //   ActivityIndicator,
@@ -88,77 +162,3 @@
 //     height: 80,
 //   },
 // });
-
-import * as React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-
-export default function SplashScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Image
-        style={styles.topImage}
-        source={require("../assets/splashScreenImage.png")}
-      />
-      <Image
-        style={styles.bottomImage}
-        source={require("../assets/bluebg.png")}
-      />
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.push("Auth");
-        }}
-      >
-        <Image
-          style={{ height: 150, width: 150 }}
-          source={require("../assets/buttonSplashScreen.png")}
-        />
-      </TouchableOpacity>
-      <Text style={styles.text}>Pick Your Favourite Pet Now</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "white",
-  },
-  topImage: {
-    marginTop: 70,
-    width: 400,
-    height: 200,
-    resizeMode: "contain",
-    zIndex: 100,
-  },
-  bottomImage: {
-    position: "absolute",
-    bottom: -50,
-    height: 500,
-    width: 400,
-  },
-
-  button: {
-    position: "absolute",
-    bottom: 30,
-    zIndex: 100, // works on ios
-  },
-
-  text: {
-    position: "absolute",
-    bottom: 220,
-    fontSize: 20,
-    fontWeight: "700",
-
-    color: "white",
-  },
-});

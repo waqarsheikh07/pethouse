@@ -72,7 +72,7 @@ export default function Myaccount() {
         </Text>
 
         <Image
-          style={{ height: 70, width: 70, marginBottom: 20 }}
+          style={{ height: 70, width: 70 }}
           source={require("../assets/Myaccount/Profileimage.png")}
         />
 

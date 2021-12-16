@@ -139,13 +139,11 @@ export default function Signup({ navigation }) {
             Sign Up
           </Button>
           <Text style={styles.haveAccount}>
-            {" "}
             Already have an account?
             <Text
               style={{ color: "#0092F9" }}
               onPress={() => Linking.openURL("../SignIn")}
             >
-              {" "}
               Sign In
             </Text>
           </Text>
