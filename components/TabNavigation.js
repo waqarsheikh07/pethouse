@@ -9,6 +9,7 @@ import Dashboard from "../components/Dashboard";
 import SavedAds from "../components/SavedAds";
 import SplashScreen from "../components/SplashScreen";
 import Myaccount from "../components/Myaccount";
+import ProductDetail from "../components/ProductDetail";
 
 import Cart from "../components/Cart";
 
@@ -42,6 +43,17 @@ const Tabs = () => {
           ),
         }}
       />
+
+      {/* <Tab.Screen
+        name="ProductDetails"
+        component={ProductDetail}
+        options={{
+          tabBarLabel: "ProductDetails",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      /> */}
 
       <Tab.Screen
         name="Cart"

@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import { Card } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import TabNavigation from "./TabNavigation";
 
 const cartData = [
   {

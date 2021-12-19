@@ -2,17 +2,19 @@ import * as React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 
 import { Card } from "react-native-paper";
+import { strapiURL } from "./ServerUrl";
 
 export default function App({ navigation, item }) {
-  const [pet, setPet] = React.useState(null);
+  const [isLoading, setLoading] = React.useState(true);
+  const [pets, setPets] = React.useState([]);
 
-  const getPet = async () => {
+  const getPets = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:1337/popular-pets/" + item.id
-      );
+      console.log(strapiURL + "/animals");
+      const response = await fetch(strapiURL + "/animals");
       const json = await response.json();
-      setPet(json);
+      setPets(json.data);
+      console.log(pets);
     } catch (error) {
       console.error(error);
     } finally {
@@ -21,32 +23,27 @@ export default function App({ navigation, item }) {
   };
 
   React.useEffect(() => {
-    getPet();
+    getPets();
   }, []);
 
   return (
     <View style={styles.container}>
       <Card style={{ width: "100%" }}>
         <Image
-          style={{ width: "100%", height: 200, resizeMode: "containt" }}
+          style={{ width: "100%", height: 200, resizeMode: "contain" }}
           source={{
             uri: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==",
           }}
         />
-        <Text style={{ fontSize: 20, fontWeight: 600, paddingLeft: 10 }}>
-          Product Title
+        <Text style={{ fontSize: 20, fontWeight: "600", paddingLeft: 10 }}>
+          {/* {item.Name} */}
         </Text>
         <Text style={{ fontSize: 16, paddingLeft: 10, paddingBottom: 10 }}>
-          $500
+          {/* ${item.Price} */}
         </Text>
       </Card>
 
-      <Text style={{ paddingTop: 20 }}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </Text>
+      <Text style={{ paddingTop: 20 }}>{item.Description}</Text>
     </View>
   );
 }

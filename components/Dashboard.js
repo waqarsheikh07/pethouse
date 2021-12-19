@@ -13,6 +13,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Searchbar, Button } from "react-native-paper";
+import { simpleURL, strapiURL } from "./ServerUrl";
 
 function TopSearchBar() {
   return (
@@ -47,7 +48,7 @@ function TopSearchBar() {
 
 function RenderListItem({ item }) {
   return (
-    <Pressable>
+    <Pressable onPress={() => naigation.navigate("ProductDetails")}>
       <View
         style={{
           flex: 1,
@@ -80,24 +81,31 @@ function RenderListItem({ item }) {
               fontWeight: "600",
             }}
           >
-            ${item.price}
+            ${item.Price}
           </Text>
         </View>
 
-        {item.thumb.map(({ url }) => (
+        {/* {item.Thumb.map(({ url }) => (
           <Image
             style={{ width: 100, height: 80, resizeMode: "contain" }}
             source={{
-              uri: "http://localhost:1337" + url,
+              uri: { strapiURL } + url,
             }}
           />
-        ))}
+        ))} */}
 
-        <View style={{ padding: 8, justifyContent: "center" }}>
-          <Text style={{ fontWeight: "700", fontSize: 15 }}>
-            {item.name} {console.log(item.thumb)}
-          </Text>
-          <Text style={{ paddingTop: 5 }}>{item.pieces} Pieces</Text>
+        <Image
+          style={{ width: 100, height: "100%", resizeMode: "cover" }}
+          source={{
+            uri: "http://10.135.17.37:1337" + item.Thumb.data[0].attributes.url,
+          }}
+        />
+
+        <View
+          style={{ padding: 8, justifyContent: "center", paddingVertical: 20 }}
+        >
+          <Text style={{ fontSize: 15 }}>{item.Name}</Text>
+          <Text style={{ paddingTop: 5 }}>{item.Quantity} Pieces</Text>
         </View>
       </View>
     </Pressable>
@@ -144,15 +152,12 @@ function RenderSmallListItem({ item }) {
         </Pressable>
       </View>
 
-      {item.thumb.map(({ url }) => (
-        <Image
-          style={{ width: "100%", height: 150, resizeMode: "contain" }}
-          source={{
-            uri: "http://localhost:1337" + url,
-          }}
-        />
-      ))}
-
+      <Image
+        style={{ height: 150, resizeMode: "cover" }}
+        source={{
+          uri: "http://10.135.17.37:1337" + item.Thumb.data[0].attributes.url,
+        }}
+      />
       <View
         style={{
           padding: 8,
@@ -163,14 +168,14 @@ function RenderSmallListItem({ item }) {
       >
         <Text
           style={{
-            fontWeight: 700,
+            fontWeight: "700",
             color: "white",
             fontSize: 15,
           }}
         >
-          {item.name} {console.log(item)}
+          {item.Name}
         </Text>
-        <Text style={{ color: "white", paddingTop: 5 }}>${item.price}</Text>
+        <Text style={{ color: "white", paddingTop: 5 }}>${item.Price}</Text>
       </View>
     </View>
   );
@@ -190,7 +195,9 @@ function MyFlatList({ data, numColumns }) {
     <View>
       <FlatList
         data={data}
-        renderItem={({ item }) => <RenderSmallListItem item={item} />}
+        renderItem={({ item }) => (
+          <RenderSmallListItem item={item.attributes} />
+        )}
         numColumns={numColumns}
         keyExtractor={(item, index) => index}
         style={{ padding: 5 }}
@@ -199,15 +206,17 @@ function MyFlatList({ data, numColumns }) {
   );
 }
 
-export default function App() {
+export default function App({ Navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [pets, setPets] = useState([]);
 
   const getPets = async () => {
     try {
-      const response = await fetch("http://localhost:1337/popular-pets");
+      console.log(strapiURL + "/animals");
+      const response = await fetch(strapiURL + "/animals?populate=*");
       const json = await response.json();
-      setPets(json);
+      setPets(json.data);
+      console.log(pets);
     } catch (error) {
       console.error(error);
     } finally {
@@ -224,20 +233,22 @@ export default function App() {
       <View style={styles.container}>
         <TopSearchBar />
         <View style={{ paddingBottom: 20 }}>
-          <DashboardHeading heading="Popular Pets" buttonText="See All" />
+          <DashboardHeading heading="Popular Animals" buttonText="" />
           {isLoading ? (
             <ActivityIndicator />
           ) : (
-            <MyFlatList data={pets.slice(0, 2)} numColumns={2} />
+            <MyFlatList data={pets} numColumns={2} />
           )}
 
-          <DashboardHeading heading="Best Price" buttonText="See All" />
+          <DashboardHeading heading="Achay Janwar" buttonText="" />
           {isLoading ? (
             <ActivityIndicator />
           ) : (
             <FlatList
               data={pets}
-              renderItem={({ item }) => <RenderListItem item={item} />}
+              renderItem={({ item }) => (
+                <RenderListItem item={item.attributes} />
+              )}
               keyExtractor={(item) => item.id}
               style={{ padding: 5 }}
             />

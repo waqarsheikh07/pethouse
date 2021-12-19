@@ -28,7 +28,11 @@ export default function SplashScreen({ navigation }) {
         <Text style={styles.petText}>Pet</Text>
         <Text style={styles.houseText}> House</Text>
       </View>
-      <View style={styles.inputs}>
+      <View
+        style={{
+          width: "80%",
+        }}
+      >
         <Text style={styles.forgot}>Forgot Password?</Text>
         <Text>Enter Your Email Below</Text>
 
@@ -87,8 +91,8 @@ const styles = StyleSheet.create({
   },
 
   textView: {
-    paddingTop: 10,
-    flex: 1,
+    paddingVertical: 10,
+
     flexDirection: "row",
     flexWrap: "wrap",
   },
@@ -103,12 +107,10 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "white",
-    width: "80vw",
   },
   buttons: {
     marginTop: 5,
     height: 40,
-    width: "80vw",
   },
   buttonsContainer: {
     paddingTop: 20,
@@ -136,8 +138,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   forgot: {
+    alignSelf: "center",
     fontSize: 20,
-    fontFamily: "Impact",
-    marginBottom: 10,
+    color: "black",
+    marginBottom: 30,
+
+    fontWeight: "700",
+
+    margin: 10,
   },
 });

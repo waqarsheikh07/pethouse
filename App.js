@@ -4,18 +4,22 @@ import Tabs from "./components/TabNavigation";
 import { Keyboard, Pressable, StyleSheet, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Home from "./components/Home";
 import { SafeAreaView } from "react-native";
+
+import Home from "./components/Home";
+
 import Dashboard from "./components/Dashboard";
 import Cart from "./components/Cart";
 import SplashScreen from "./components/SplashScreen";
 import Myaccount from "./components/Myaccount";
+
 import Login from "./components/Login";
 import SignUp from "./components/signUp";
+
 import HomScreen from "./components/HomeScreen";
 import SavedAds from "./components/SavedAds";
 import Forget from "./components/Forget";
-
+import ProductDetail from "./components/ProductDetail";
 const Stack = createStackNavigator();
 
 const Auth = () => {
@@ -52,32 +56,30 @@ const Auth = () => {
 
 const App = () => {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName="SplashScreen">
-    //     {/* SplashScreen which will come once for 5 Seconds */}
-    //     <Stack.Screen
-    //       name="SplashScreen"
-    //       component={SplashScreen}
-    //       // Hiding header for Splash Screen
-    //       options={{ headerShown: false }}
-    //     />
-    //     {/* Auth Navigator: Include Login and Signup */}
-    //     <Stack.Screen
-    //       name="Auth"
-    //       component={Auth}
-    //       options={{ headerShown: false }}
-    //     />
-    //     {/* Navigation Drawer as a landing page */}
-    //     <Stack.Screen
-    //       name="Dashboard"
-    //       component={Tabs}
-    //       // Hiding header for Navigation Drawer
-    //       options={{ headerShown: false }}
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-
-    <Login />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SplashScreen">
+        {/* SplashScreen which will come once for 5 Seconds */}
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          // Hiding header for Splash Screen
+          options={{ headerShown: false }}
+        />
+        {/* Auth Navigator: Include Login and Signup */}
+        <Stack.Screen
+          name="Auth"
+          component={Auth}
+          options={{ headerShown: false }}
+        />
+        {/* Navigation Drawer as a landing page */}
+        <Stack.Screen
+          name="Dashboard"
+          component={Tabs}
+          // Hiding header for Navigation Drawer
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

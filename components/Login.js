@@ -15,7 +15,9 @@ import { TextInput, Card, Button, Switch } from "react-native-paper";
 import axios from "axios";
 import { styles as FormStyles } from "../MyStyles/FormStyles";
 
-export default function Login() {
+import { strapiURL } from "./ServerUrl";
+
+export default function Login({ navigation }) {
   const [email, setEmail] = React.useState("");
   const [password, setPasswrod] = React.useState("");
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
@@ -35,7 +37,7 @@ export default function Login() {
     }
     setLoading(true); // Request API.
     await axios
-      .post("http://localhost:1337/auth/local", {
+      .post(strapiURL + "/auth/local", {
         identifier: email,
         password: password,
       })
@@ -62,18 +64,13 @@ export default function Login() {
         <ActivityIndicator />
       ) : (
         <View style={styles.container}>
-          {/* <View style={styles.header}>
+          <View style={styles.header}>
             <Image
               style={{ width: 100, height: 85, resizeMode: "contain" }}
               source={require("../assets/Login/home.png")}
             />
-          </View> */}
+          </View>
 
-          {/* <View style={styles.textView}>
-            <Text style={styles.petText}>Pet</Text>
-            <Text style={styles.houseText}> House</Text>
-          </View> */}
-          {/* 
           <View style={{ marginTop: 30 }}>
             <TextInput
               theme={{
@@ -121,27 +118,26 @@ export default function Login() {
               <Text style={styles.rememberMe}>Remember Me</Text>
 
               <Text
-                onPress={() => console.log("")}
-                // () => navigation.navigate("Forget")
+                onPress={() => navigation.navigate("Forget")}
                 style={styles.forgotPass}
               >
                 Forgot Password?
               </Text>
             </View>
-          </View> */}
+          </View>
 
-          {/* <View style={{ marginRight: "auto", paddingTop: 10 }}>
-            <Text style={{ color: "red", fontSize: 14, fontWeight: 500 }}>
+          <View style={{ marginRight: "auto", paddingTop: 10 }}>
+            <Text style={{ color: "red", fontSize: 14, fontWeight: "500" }}>
               {errorMsg}
             </Text>
-          </View> */}
+          </View>
 
-          {/* <View style={styles.buttonsContainer}>
+          <View style={styles.buttonsContainer}>
             <Button
               mode="contained"
               color="#0092F9"
               onPress={() => {
-                // Login(email, password);
+                Login(email, password);
                 console.log("");
               }}
               style={styles.buttons}
@@ -155,8 +151,7 @@ export default function Login() {
             <Button
               mode="outlined"
               color="#0092F9"
-              onPress={() => console.log("")}
-              // navigation.navigate("RegisterScreen")
+              onPress={() => navigation.navigate("RegisterScreen")}
               style={styles.buttons}
               labelStyle={{
                 color: "#0092F9",
@@ -165,9 +160,9 @@ export default function Login() {
             >
               Create an account
             </Button>
-          </View> */}
+          </View>
 
-          {/* <View style={styles.footer}>
+          <View style={styles.footer}>
             <View style={{ borderWidth: 0 }}>
               <Button
                 icon="facebook"
@@ -182,7 +177,7 @@ export default function Login() {
               icon="twitter"
               labelStyle={{ color: "blue", fontSize: 26 }}
             />
-          </View> */}
+          </View>
         </View>
       )}
     </View>
