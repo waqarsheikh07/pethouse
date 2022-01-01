@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animals",
+  "info": {
+    "singularName": "animal",
+    "pluralName": "animals",
+    "displayName": "Animal",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "richtext",
+      "required": true
+    },
+    "Gender": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "Age": {
+      "type": "integer"
+    },
+    "Thumb": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Impression": {
+      "type": "integer"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "animals"
+    },
+    "savedby": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "savedpets"
+    },
+    "buyer": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "animal"
+    },
+    "Quantity": {
+      "type": "integer",
+      "default": 0,
+      "required": true
+    },
+    "photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
