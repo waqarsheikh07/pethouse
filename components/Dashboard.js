@@ -97,7 +97,7 @@ function RenderListItem({ item }) {
         <Image
           style={{ width: 100, height: "100%", resizeMode: "cover" }}
           source={{
-            uri: "http://10.135.17.37:1337" + item.Thumb.data[0].attributes.url,
+            uri: "http://10.135.17.37:1337" + item.Thumb.data.attributes.url,
           }}
         />
 
