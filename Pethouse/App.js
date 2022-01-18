@@ -78,6 +78,13 @@ const App = () => {
           // Hiding header for Navigation Drawer
           options={{ headerShown: false }}
         />
+
+        <Stack.Screen
+          name="ProductDetail"
+          component={ProductDetail}
+          // Hiding header for Navigation Drawer
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

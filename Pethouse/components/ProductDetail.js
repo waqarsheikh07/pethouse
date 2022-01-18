@@ -43,7 +43,7 @@ export default function App({ navigation, item }) {
         </Text>
       </Card>
 
-      <Text style={{ paddingTop: 20 }}>{item.Description}</Text>
+      <Text style={{ paddingTop: 20 }}>{item.description}</Text>
     </View>
   );
 }
